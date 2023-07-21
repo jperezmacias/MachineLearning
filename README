@@ -1,2 +1,71 @@
-MyMM.m is a function testing Nearest Neighbors
-exercise1.m is testing the funciton and plotting the results
+# K-Nearest Neighbors (KNN) Algorithm
+
+This repository contains MATLAB code for the implementation of the K-Nearest Neighbors (KNN) algorithm. The purpose of this code is to demonstrate how the KNN algorithm can be used to classify data points based on their nearest neighbors.
+
+## Contents
+
+- [Introduction](#introduction)
+- [Usage](#usage)
+- [Requirements](#requirements)
+- [How to Run](#how-to-run)
+- [Example](#example)
+- [License](#license)
+
+## Introduction
+
+The K-Nearest Neighbors (KNN) algorithm is a simple and widely used machine learning algorithm for classification tasks. Given a training dataset with labeled examples, KNN predicts the class of a new data point by finding the K nearest neighbors from the training data and taking a majority vote among these neighbors.
+
+The provided MATLAB code demonstrates a basic implementation of the KNN algorithm. It takes a set of training data (`traindata`) with corresponding class labels (`trainclass`) and a set of test data (`testdata`) for which the classes need to be predicted. The algorithm computes the Euclidean distance between each test sample and all training samples, selects the K nearest neighbors, and assigns the most common class among these neighbors as the predicted class for the test sample.
+
+## Usage
+
+To use this code, you will need MATLAB installed on your machine. The implementation is provided in the `MyNN` function in the file `MyNN.m`.
+
+## Requirements
+
+- MATLAB software
+
+## How to Run
+
+1. Clone this repository to your local machine or download the files as a ZIP archive.
+
+2. Open MATLAB and navigate to the folder where you downloaded the files.
+
+3. Ensure that the `MyNN.m` file, containing the KNN implementation, is available in the MATLAB path.
+
+4. Modify the `traindata` and `trainclass` matrices in the MATLAB script or load your own training data and class labels.
+
+5. Optionally, generate test data (`x1` and `x2` arrays) or load your own test data.
+
+6. Run the MATLAB script, which calls the `MyNN` function to predict the classes for the test data.
+
+## Example
+
+The provided example script `main_script.m` demonstrates how to use the KNN algorithm with randomly generated data.
+
+```matlab
+% Close all figures and clear the workspace
+close all, clear all
+
+% Generate 5000 random points between 1 and 5 for x1 and x2
+x1 = rand(1, 5000) * 5;
+x2 = rand(1, 5000) * 5;
+
+% Load the data from the file "ex1_data.mat"
+load ex1_data
+
+% Create a matrix "testdata" containing the randomly generated x1 and x2 points
+testdata = [x1; x2];
+
+% Call the "MyNN" function to predict the classes for the testdata
+classes = MyNN(traindata, trainclass, testdata);
+
+% Plot the training data points with different classes shown in different colors
+figure
+gscatter(traindata(1,:), traindata(2,:), trainclass)
+
+
+% Plot the test data points with predicted classes shown in different colors
+figure
+gscatter(x1, x2, classes)
+
